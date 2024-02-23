@@ -17,6 +17,11 @@ import java.util.Vector;
  * @author anabel
  */
 public class Tema10 {
+    /*
+        AMPLIACIÓN:
+            - Data Structures: https://www.youtube.com/watch?v=RBSGKlAvoiM
+            - Algorithms & data structures: https://www.youtube.com/watch?v=8hly31xKli0
+    */
 
     public static void main(String[] args) {
         /*
@@ -169,7 +174,7 @@ public class Tema10 {
 //                   ·-----------------·  
 
 //        // Creo dos listas con las notas de 2 alumnos
-//        ArrayList<Integer> notasAlumno1 = new ArrayList<>();
+//        ArrayList<Integer> notasAlumno1 = ArrayList<>(); 
 //        notasAlumno1.add(3);
 //        notasAlumno1.add(5);
 //        notasAlumno1.add(2);
@@ -241,13 +246,15 @@ public class Tema10 {
         // Mientras haya más elementos, avanzamos por la lista de pasando de uno a otro
         while(it.hasNext()) {
             // Eliminamos el elemento
-//            it.remove();  // Si descomentas esta línea, se eliminará el elemento antes de guardarlo en usuario y no se imprimirá
+            it.remove();  // Si descomentas esta línea, se eliminará el elemento antes de guardarlo en usuario y no se imprimirá
             
             // Accedemos al siguiente elemento y lo guardamos en la variable usuario
             Usuario usuario = it.next();
             
             // Imprimimos sus valores por pantalla
             System.out.println(usuario);
+            
+
             
         }
     }
