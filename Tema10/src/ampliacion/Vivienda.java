@@ -15,6 +15,12 @@ public class Vivienda {
         this.direccion = "";
         this.lActividades = new ArrayList<>();
     }
+
+    public Vivienda(String direccion) {
+        this.direccion = direccion;
+        this.lActividades = new ArrayList<>();
+    }
+
     public Vivienda(String direccion, ArrayList<Actividad> lActividades) {
         this.direccion = direccion;
         this.lActividades = lActividades;
@@ -56,8 +62,17 @@ public class Vivienda {
         return entrada.nextLine().equalsIgnoreCase("si");
     }
 
-    public void insertarActividad() {
-        lActividades.add(new Actividad(pedirNombre(), pedirTipo(), pedirEnFamilia()));
+    public int pedirPosicionVivienda() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Elige una vivienda: ");
+        return entrada.nextInt() - 1;
+    }
+
+    public void insertarActividad(Vivienda[] aViviendas) {
+        int posicionVivienda = pedirPosicionVivienda();
+        Actividad actividad = new Actividad(pedirNombre(), pedirTipo(), pedirEnFamilia());
+
+        aViviendas[posicionVivienda].getlActividades().add(actividad);
         System.out.println("✔ Actividad añadida correctamente");
     }
 
@@ -77,19 +92,17 @@ public class Vivienda {
         }
     }
 
-    public void mostrarActividadesPorTipo() {
-        String entradaTipo = pedirTipo();
-
+    public void mostrarActividadesPorTipo(String tipo) {
         for(int i = 0; i < lActividades.size(); i++) {
-            if(lActividades.get(i).getTipo().equalsIgnoreCase(entradaTipo)) {
+            if(lActividades.get(i).getTipo().equalsIgnoreCase(tipo)) {
                 System.out.println("ACTIVIDAD " + (i + 1));
                 lActividades.get(i).mostrar();
             }
         }
     }
 
-    public void mostrarCantidadActividades() {
-        System.out.println(lActividades.size());
+    public int cantidadActividades() {
+        return lActividades.size();
     }
 
     // TO STRING

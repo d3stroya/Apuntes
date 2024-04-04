@@ -21,8 +21,8 @@ Para una sola vivienda:
 ## Versión 2.0
 Para 3 viviendas.
 * Menú:
-  1. Rellenar viviendas (Añadiremos las direcciones de las viviendas, pero NO añadiremos
-     actividades).
+  1. Rellenar viviendas (Añadiremos las direcciones de las viviendas, 
+  pero NO añadiremos actividades).
   2. Añadir actividad (Preguntaremos al usuario la posición de la vivienda donde insertar la
      actividad)
   3. Mostrar viviendas (Mostraremos la información de la vivienda junto con sus actividades)..
