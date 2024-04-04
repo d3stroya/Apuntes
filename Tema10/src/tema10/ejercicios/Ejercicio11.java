@@ -31,16 +31,16 @@ public class Ejercicio11 {
         return entrada.nextLine();
     }
     
-    public static void agregarEmpleado(ArrayList<Empleado> empleados) {
-        empleados.add(new Empleado(pedirNombre(), pedirHoras(), pedirTarifa()));
+    public static void agregarEmpleado(ArrayList<EmpleadoEj11> empleados) {
+        empleados.add(new EmpleadoEj11(pedirNombre(), pedirHoras(), pedirTarifa()));
     }
     
-    public static void mostrarEmpleados(ArrayList<Empleado> empleados) {
+    public static void mostrarEmpleados(ArrayList<EmpleadoEj11> empleados) {
         empleados.forEach(System.out::println);
     }
     
     public static void main(String[] args) {
-        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<EmpleadoEj11> empleados = new ArrayList<>();
         do {
             agregarEmpleado(empleados);            
         } while(pedirConfirmacion().equalsIgnoreCase("s"));
@@ -50,17 +50,17 @@ public class Ejercicio11 {
 
 }
 
-class Empleado {
+class EmpleadoEj11 {
     private String nombre;
     private int horas;
     private double tarifa;
 
-    public Empleado() {
+    public EmpleadoEj11() {
         this.nombre = "";
         this.horas = 0;
         this.tarifa = 0;
     }
-    public Empleado(String nombre, int horas, double tarifa) {
+    public EmpleadoEj11(String nombre, int horas, double tarifa) {
         this.nombre = nombre;
         this.horas = horas;
         this.tarifa = tarifa;

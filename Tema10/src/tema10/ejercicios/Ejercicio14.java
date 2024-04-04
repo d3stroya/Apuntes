@@ -20,21 +20,21 @@ public class Ejercicio14 {
         return entrada.nextLine();
     }
     
-    public static void introducirAlumno(ArrayList<Alumno> lAlumnos) {
+    public static void introducirAlumno(ArrayList<AlumnoEj14> lAlumnos) {
         System.out.println("Agregando alumno...");
-        Alumno alumno = new Alumno(pedirNombre());
+        AlumnoEj14 alumno = new AlumnoEj14(pedirNombre());
         lAlumnos.add(alumno);
     }
     
-    public static void mostrarAlumnos(ArrayList<Alumno> lAlumnos) {
+    public static void mostrarAlumnos(ArrayList<AlumnoEj14> lAlumnos) {
         lAlumnos.forEach(System.out::println);
     }
     
-    public static void mostrarAlumnoMejorMedia(ArrayList<Alumno> lAlumnos) {
+    public static void mostrarAlumnoMejorMedia(ArrayList<AlumnoEj14> lAlumnos) {
         float media = 0;
-        Alumno alumno = lAlumnos.get(0);
+        AlumnoEj14 alumno = lAlumnos.get(0);
         
-        for(Alumno a : lAlumnos) {
+        for(AlumnoEj14 a : lAlumnos) {
             if(a.calcularMedia() > media) {
                 alumno = a;
                 media = alumno.calcularMedia();
@@ -43,20 +43,20 @@ public class Ejercicio14 {
         System.out.println(alumno);
     }
     
-    public static void mostrarAsignaturaMasDificil(ArrayList<Alumno> lAlumnos) {
-        ArrayList<Alumno> filas = lAlumnos;
-        Asignatura[] columnas = lAlumnos.get(0).getaAsignaturas();
-        Asignatura masDificil = columnas[0];
+    public static void mostrarAsignaturaMasDificil(ArrayList<AlumnoEj14> lAlumnos) {
+        ArrayList<AlumnoEj14> filas = lAlumnos;
+        AsignaturaEj14[] columnas = lAlumnos.get(0).getaAsignaturas();
+        AsignaturaEj14 masDificil = columnas[0];
         float suma = 0, media = 10; 
         
         // Recorremos las columnas
         for(int j = 0; j < filas.size(); j++) {
-            Asignatura asignatura = columnas[j];
+            AsignaturaEj14 asignatura = columnas[j];
             
             // Recorremos las filas de cada columna
             for(int i = 0; i < columnas.length; i++) {
-                Alumno alumno = filas.get(i);
-                Asignatura alumnoAsignatura = alumno.getaAsignaturas()[i];
+                AlumnoEj14 alumno = filas.get(i);
+                AsignaturaEj14 alumnoAsignatura = alumno.getaAsignaturas()[i];
                 
                 // Accedemos a la nota de la asignatura y la sumamos
                 suma += alumnoAsignatura.getNota();
@@ -73,7 +73,7 @@ public class Ejercicio14 {
     }
     
     public static void mostrarMenu() {
-        ArrayList<Alumno> lAlumnos = new ArrayList<>();
+        ArrayList<AlumnoEj14> lAlumnos = new ArrayList<>();
         Scanner entrada = new Scanner(System.in);
         int opcion = 0;
         
@@ -110,26 +110,26 @@ public class Ejercicio14 {
     }
 }
 
-final class Alumno {
+final class AlumnoEj14 {
     // ATRIBUTOS
     private final String[] NOMBRES_ASIGNATURA = {"Lengua", "Mates", "Física"};
     private String nombre;
-    private Asignatura[] aAsignaturas;
+    private AsignaturaEj14[] aAsignaturas;
 
     // CONSTRUCTORES
-    public Alumno() {
+    public AlumnoEj14() {
         this.nombre = "";
-        this.aAsignaturas = new Asignatura[3];
+        this.aAsignaturas = new AsignaturaEj14[3];
     }
     // Creo un constructor que pide el nombre 
     // del alumno, rellena los nombres de las asignaturas
     // y pide la nota de cada asignatura
-    public Alumno(String nombre) {
+    public AlumnoEj14(String nombre) {
         this.nombre = nombre;
-        this.aAsignaturas = new Asignatura[3];
+        this.aAsignaturas = new AsignaturaEj14[3];
         
         for(int i = 0; i < aAsignaturas.length; i++) {            
-            aAsignaturas[i] = new Asignatura();
+            aAsignaturas[i] = new AsignaturaEj14();
             aAsignaturas[i].setNombre(NOMBRES_ASIGNATURA[i]);
             System.out.println(NOMBRES_ASIGNATURA[i]);
             aAsignaturas[i].setNota(pedirNota());
@@ -137,7 +137,7 @@ final class Alumno {
         }
     }    
     
-    public Alumno(String nombre, Asignatura[] aAsignaturas) {
+    public AlumnoEj14(String nombre, AsignaturaEj14[] aAsignaturas) {
         this.nombre = nombre;
         this.aAsignaturas = aAsignaturas;
     }
@@ -151,11 +151,11 @@ final class Alumno {
         this.nombre = nombre;
     }
 
-    public Asignatura[] getaAsignaturas() {
+    public AsignaturaEj14[] getaAsignaturas() {
         return aAsignaturas;
     }
 
-    public void setaAsignaturas(Asignatura[] aAsignaturas) {
+    public void setaAsignaturas(AsignaturaEj14[] aAsignaturas) {
         this.aAsignaturas = aAsignaturas;
     }
     
@@ -181,18 +181,18 @@ final class Alumno {
     }        
 }
 
-class Asignatura {
+class AsignaturaEj14 {
     // ATRIBUTOS
     private String nombre;
     private float nota;
 
     // CONSTRUCTORES
-    public Asignatura() {
+    public AsignaturaEj14() {
         this.nombre = "";
         this.nota = 0;
     }
     
-    public Asignatura(String nombre, float nota) {
+    public AsignaturaEj14(String nombre, float nota) {
         this.nombre = nombre;
         this.nota = nota;
     }

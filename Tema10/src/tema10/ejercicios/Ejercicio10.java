@@ -32,15 +32,15 @@ public class Ejercicio10 {
         return entrada.nextInt();
     }
     
-    public static void rellenarLista(ArrayList<Asignatura> asignaturas) {
+    public static void rellenarLista(ArrayList<AsignaturaEj14> asignaturas) {
         for(int i = 0; i < nombresAsignaturas.length; i++) {
-            asignaturas.add(new Asignatura(nombresAsignaturas[i], pedirNota(nombresAsignaturas[i])));
+            asignaturas.add(new AsignaturaEj14(nombresAsignaturas[i], pedirNota(nombresAsignaturas[i])));
         }
     }
     
-    public static void mostrarNotaMedia(ArrayList<Asignatura> asignaturas) {
+    public static void mostrarNotaMedia(ArrayList<AsignaturaEj14> asignaturas) {
         double media = 0;
-        for(Asignatura asignatura : asignaturas) {
+        for(AsignaturaEj14 asignatura : asignaturas) {
             media += asignatura.getNota();
         }
         media /= asignaturas.size();
@@ -48,7 +48,7 @@ public class Ejercicio10 {
     }
     
     public static void main(String[] args) {
-        ArrayList<Asignatura> asignaturas = new ArrayList<>();
+        ArrayList<AsignaturaEj14> asignaturas = new ArrayList<>();
         rellenarLista(asignaturas);
         mostrarNotaMedia(asignaturas);
     }

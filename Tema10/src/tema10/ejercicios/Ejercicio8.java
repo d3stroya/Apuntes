@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Ejercicio8 {
     public static void main(String[] args) {
-        ArrayList<Alumno> alumnos = new ArrayList<>();
+        ArrayList<AlumnoEj8> alumnos = new ArrayList<>();
         rellenarLista(alumnos);
         mostrarLista(alumnos);
     }
@@ -27,12 +27,12 @@ public class Ejercicio8 {
         return entrada.nextInt();
     }
     
-    public static void agregarAlumno(ArrayList<Alumno> alumnos) {
+    public static void agregarAlumno(ArrayList<AlumnoEj8> alumnos) {
         System.out.println("\n- AGREGAR NUEVO/A ALUMNO/A -");
-        alumnos.add(new Alumno(pedirNombre(), pedirCurso()));
+        alumnos.add(new AlumnoEj8(pedirNombre(), pedirCurso()));
     }
     
-    public static void rellenarLista(ArrayList<Alumno> alumnos) {
+    public static void rellenarLista(ArrayList<AlumnoEj8> alumnos) {
         Scanner entrada = new Scanner(System.in);
         String respuesta = "";
         do {
@@ -42,22 +42,22 @@ public class Ejercicio8 {
         } while(respuesta.equalsIgnoreCase("sí") || respuesta.equalsIgnoreCase("si"));
     }
     
-    public static void mostrarLista(ArrayList<Alumno> alumnos) {
+    public static void mostrarLista(ArrayList<AlumnoEj8> alumnos) {
         System.out.println("\n- LISTA DE ALUMNOS/AS -");
         alumnos.forEach(System.out::println);
     }
 }
 
-class Alumno {
+class AlumnoEj8 {
     private String nombre;
     private int curso;
 
-    public Alumno() {
+    public AlumnoEj8() {
         this.nombre = "";
         this.curso = 0;
     }
     
-    public Alumno(String nombre, int curso) {
+    public AlumnoEj8(String nombre, int curso) {
         this.nombre = nombre;
         this.curso = curso;
     }

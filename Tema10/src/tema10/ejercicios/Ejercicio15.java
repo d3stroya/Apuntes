@@ -6,7 +6,6 @@ cada clase en un archivo .java homónimo.
 package tema10.ejercicios;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -56,18 +55,18 @@ public class Ejercicio15 {
      * @param lEmpresas 
      */
     public static void mostrarTodosLosEmpleadosPorSueldo(ArrayList<Empresa> lEmpresas) {
-        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<EmpleadoEj15> empleados = new ArrayList<>();
         int index = 0;
         
         for(Empresa empresa : lEmpresas) {
-            for(Empleado empleado : empresa.getlEmpleados()) {
+            for(EmpleadoEj15 empleado : empresa.getlEmpleados()) {
                 empleados.add(index, empleado);
                 index++;
             }
         }
         // Hay varias formas:        
         // 1. El método de la burbuja
-        Empleado aux;
+        EmpleadoEj15 aux;
         for(int i = 0; i < empleados.size() - 1; i++) {
             for(int j = i + 1; j < empleados.size(); j++) {
                 if(empleados.get(i).getSueldo() < empleados.get(j).getSueldo()) {
@@ -143,7 +142,7 @@ public class Ejercicio15 {
 class Empresa {
     // ATRIBUTOS
     private String nombre;
-    private ArrayList<Empleado> lEmpleados;
+    private ArrayList<EmpleadoEj15> lEmpleados;
 
     // CONSTRUCTORES
     public Empresa() {
@@ -151,7 +150,7 @@ class Empresa {
         this.lEmpleados = insertarEmpleados();
     }
     
-    public Empresa(String nombre, ArrayList<Empleado> lEmpleados) {
+    public Empresa(String nombre, ArrayList<EmpleadoEj15> lEmpleados) {
         this.nombre = nombre;
         this.lEmpleados = lEmpleados;
     }
@@ -165,11 +164,11 @@ class Empresa {
         this.nombre = nombre;
     }
 
-    public ArrayList<Empleado> getlEmpleados() {
+    public ArrayList<EmpleadoEj15> getlEmpleados() {
         return lEmpleados;
     }
 
-    public void setlEmpleados(ArrayList<Empleado> lEmpleados) {
+    public void setlEmpleados(ArrayList<EmpleadoEj15> lEmpleados) {
         this.lEmpleados = lEmpleados;
     }
     
@@ -193,14 +192,14 @@ class Empresa {
      * Sigue añadiendo empleados mientras el usuario escriba "sí"
      * @return 
      */
-    public final ArrayList<Empleado> insertarEmpleados() {
-        ArrayList<Empleado> empleados = new ArrayList<>();
+    public final ArrayList<EmpleadoEj15> insertarEmpleados() {
+        ArrayList<EmpleadoEj15> empleados = new ArrayList<>();
         Scanner entrada = new Scanner(System.in);        
         int index = 1;  // Leva la cuenta de los empleados
         
         do {
             System.out.println("\nCreando empleado " + index + "...");
-            empleados.add(new Empleado(pedirNombre(), pedirSueldo()));
+            empleados.add(new EmpleadoEj15(pedirNombre(), pedirSueldo()));
             index++;            
             
             System.out.print("¿Desea añadir más empleados? ");
@@ -222,18 +221,18 @@ class Empresa {
  * objeto de la clase Empresa.
  * @author d3stroya
  */
-class Empleado implements Comparable<Empleado> {
+class EmpleadoEj15 implements Comparable<EmpleadoEj15> {
     // ATRIBUTOS
     private String nombre;
     private int sueldo;
 
     // CONSTRUCTORES
-    public Empleado() {
+    public EmpleadoEj15() {
         this.nombre = "";
         this.sueldo = 0;
     }
     
-    public Empleado(String nombre, int sueldo) {
+    public EmpleadoEj15(String nombre, int sueldo) {
         this.nombre = nombre;
         this.sueldo = sueldo;
     }
@@ -264,7 +263,7 @@ class Empleado implements Comparable<Empleado> {
      * el sueldo del Empleado pasado por parámetro
      */
     @Override
-    public int compareTo(Empleado e) {
+    public int compareTo(EmpleadoEj15 e) {
         return Integer.compare(e.getSueldo(), this.sueldo);
     }
 
