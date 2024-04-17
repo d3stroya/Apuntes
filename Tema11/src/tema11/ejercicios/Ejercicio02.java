@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author d3stroya
  */
-public class Ejercicio2 {
+public class Ejercicio02 {
     private static Map<Integer, Producto> productos = new HashMap<>();
     
     private static String pedirNombre() {

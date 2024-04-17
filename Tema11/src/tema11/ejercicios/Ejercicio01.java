@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author d3stroya
  */
-public class Ejercicio1 {
+public class Ejercicio01 {
 /**
      * Método que calcula una temperatura aleatoria entre -10 y 40 grados.
      *
@@ -108,9 +108,8 @@ public class Ejercicio1 {
         System.out.println("El " + diaMasCaluroso.getNombre() + " día "
                 + numeroDia + " con " + diaMasCaluroso.getTemperatura() + " grados.");
 
-        Iterator<Integer> iterador2 = mapa.keySet().iterator();
-        while (iterador2.hasNext()) {
-            clave = (int) iterador2.next();
+        while (iterador.hasNext()) {
+            clave = (int) iterador.next();
             diaActual = (Dia) mapa.get(clave);
 
             if (clave != numeroDia && diaActual.getTemperatura() == diaMasCaluroso.getTemperatura()) {

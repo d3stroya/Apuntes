@@ -22,4 +22,14 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+<<<<<<< Updated upstream
 /Tema3/nbproject/private/
+=======
+/*/build/
+/*/nbproject/
+/*/test/
+/*/build.xml
+/*/manifest.mf
+
+>>>>>>> Stashed changes
+/Tema11/dist/

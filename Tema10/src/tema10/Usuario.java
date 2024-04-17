@@ -17,7 +17,7 @@ public class Usuario {
         this.nombre = nombre;
         this.foto = foto;
         this.edad = edad;
-    }
+    }    
 
     public String getNombre() {
         return nombre;
