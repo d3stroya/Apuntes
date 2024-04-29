@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,7 +55,7 @@ public class Tema12 {
         System.out.println(aAlumnos[0].getNumExpediente());
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         /*
             1.1. Sin manejo de excepciones:
@@ -172,8 +174,121 @@ public class Tema12 {
 //        // Crear los directorios especificados en la ruta si no existen
 //        File ejemplo = new File("Documentos/ejemplo/parte1");
 //        ejemplo.mkdirs();
+
+
+        // ¡OJO! con los objetos:
+        File a1 = new File("archivo1.txt"); // Objeto a1 que referencia al fichero archivo1.txt
+        try {
+            a1.createNewFile();
+        } catch(IOException e) {
+            e.getMessage();
+        }
+        
+        System.out.println(a1.getName());
+        
+        File a2 = new File("archivo2.txt"); // Objeto a2 que referencia al fichero archivo2.txt
+
+        a1.renameTo(a2); // Ahora a1 apunta a a2
+        System.out.println("a1 Renombrado: " + a1.getName());
+        System.out.println("a2: " + a2.getName());
+
+        a1.delete();    // No lo elimina
+        a2.delete();    // Sí lo elimina
+        
+        a1.renameTo(new File("renombrado.txt")); // No hay forma de eliminarlo sin crear un nuevo objeto
+        
+        a1.delete();    // No lo elimina
+        File a3 = new File("renombrado.txt");
+        a3.delete();    // Sí lo elimina
+
+
+
+        /*
+            3. ENTRADA Y SALIDA DE DATOS       
+        */
+        
+        // 3.1. FICHEROS DE TEXTO
+        
+        // 3.1.1. Leer un archivo de texto: I) Declarar - II) Inicializar y leer - III) Cerrar.
+        // Declaramos un lector de caracteres
+//        FileReader lector = null;
+        
+        // Declaramos un lector de líneas
+//        BufferedReader bufer = null;
+
+        // Los inicializamos manejando las excepciones
+//        try {
+//            lector = new FileReader("README.md");
+//            bufer = new BufferedReader(lector);
+//            
+//            // Leemos mientras haya líneas
+//            String linea = bufer.readLine();
+//            while(linea != null) {
+//                System.out.println(linea);
+//                linea = bufer.readLine();
+//            }
+//            
+//        } catch(FileNotFoundException e) {          // Puede pasar que no se encuentre el archivo
+//            System.out.println(e.getMessage());   
+//        } catch(IOException e) {                    // O que haya un error de lectura
+//            System.out.println(e.getMessage());               
+//        } 
+//        
+//        // Cerramos el búfer y el archivo manejando las excepciones (IOException)
+//        // y comprobando que archivo y bufer no son nulos (serán nulos si ha sucedido algún error en la apertura).
+//          finally {
+//            if(bufer != null) {
+//                try {
+//                    bufer.close();                                    
+//                } catch (IOException e) {
+//                    System.out.println(e.getMessage());               
+//                }
+//            }
+//            
+//            if(lector != null) {
+//                try {
+//                    lector.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());                                   
+//                }
+//            }
+//        }
         
         
+        
+        // 3.1.2. Escribir ficheros de texto: I) Declarar el fichero - II) Abrir y escribir - III) Cerrar
+        
+        // Inicializamos el escritor de líneas
+//        FileWriter escriba = null;
+        
+        // Inicializamos la imprenta de caracteres
+//        PrintWriter imprenta = null;
+        
+        // Abrimos el archivo manejando las excepciones
+//        try {
+//            escriba = new FileWriter("copia.txt", true);
+//            imprenta = new PrintWriter(escriba);
+//            
+//            // Escribimos el fichero
+//            for (int i = 0; i < 10; i++) {
+//                imprenta.println("Línea " + (i + 1));
+//            }
+//            
+//        } catch(IOException e) {
+//            System.out.println(e.getMessage());
+//        } 
+//        
+//        // Cerramos el fichero
+//          finally {
+//            if(imprenta != null) {
+//                imprenta.close();
+//            }
+//            
+//            if(escriba != null) {
+//                escriba.close();
+//            }
+//        }
+
     }
        
 }
