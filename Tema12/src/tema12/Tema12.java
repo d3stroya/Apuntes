@@ -4,8 +4,12 @@
 package tema12;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -177,29 +181,33 @@ public class Tema12 {
 
 
         // ¡OJO! con los objetos:
-        File a1 = new File("archivo1.txt"); // Objeto a1 que referencia al fichero archivo1.txt
-        try {
-            a1.createNewFile();
-        } catch(IOException e) {
-            e.getMessage();
-        }
-        
-        System.out.println(a1.getName());
-        
-        File a2 = new File("archivo2.txt"); // Objeto a2 que referencia al fichero archivo2.txt
+//        File a1 = new File("archivo1.txt"); // Objeto a1 que referencia al fichero archivo1.txt
+//        try {
+//            a1.createNewFile();
+//        } catch(IOException e) {
+//            e.getMessage();
+//        }
+////        
+//        System.out.println(a1.getName());
+////        
+//        File a2 = new File("archivo2.txt"); // Objeto a2 que referencia al fichero archivo2.txt
+////
+//        a1.renameTo(a2); // Ahora a1 apunta a a2
+//        System.out.println("a1 Renombrado: " + a1.getName());
+//        System.out.println("a2: " + a2.getName());
 
-        a1.renameTo(a2); // Ahora a1 apunta a a2
-        System.out.println("a1 Renombrado: " + a1.getName());
-        System.out.println("a2: " + a2.getName());
-
-        a1.delete();    // No lo elimina
-        a2.delete();    // Sí lo elimina
         
-        a1.renameTo(new File("renombrado.txt")); // No hay forma de eliminarlo sin crear un nuevo objeto
+//        a1.delete();    // No lo elimina
+//        a2.delete();    // Sí lo elimina
         
-        a1.delete();    // No lo elimina
-        File a3 = new File("renombrado.txt");
-        a3.delete();    // Sí lo elimina
+//        a1 = new File("archivo2.txt");
+//        a1.delete();    // Sí lo elimina
+//        
+//        a1.renameTo(new File("renombrado.txt")); // No hay forma de eliminarlo sin crear un nuevo objeto
+//        
+//        a1.delete();    // No lo elimina
+//        File a3 = new File("renombrado.txt");
+//        a3.delete();    // Sí lo elimina
 
 
 
@@ -212,11 +220,11 @@ public class Tema12 {
         // 3.1.1. Leer un archivo de texto: I) Declarar - II) Inicializar y leer - III) Cerrar.
         // Declaramos un lector de caracteres
 //        FileReader lector = null;
-        
-        // Declaramos un lector de líneas
+//        
+//        // Declaramos un lector de líneas
 //        BufferedReader bufer = null;
-
-        // Los inicializamos manejando las excepciones
+//
+//        // Los inicializamos manejando las excepciones
 //        try {
 //            lector = new FileReader("README.md");
 //            bufer = new BufferedReader(lector);
@@ -260,11 +268,11 @@ public class Tema12 {
         
         // Inicializamos el escritor de líneas
 //        FileWriter escriba = null;
-        
-        // Inicializamos la imprenta de caracteres
+//        
+//        // Inicializamos la imprenta de caracteres
 //        PrintWriter imprenta = null;
-        
-        // Abrimos el archivo manejando las excepciones
+//        
+//        // Abrimos el archivo manejando las excepciones
 //        try {
 //            escriba = new FileWriter("copia.txt", true);
 //            imprenta = new PrintWriter(escriba);
@@ -272,6 +280,7 @@ public class Tema12 {
 //            // Escribimos el fichero
 //            for (int i = 0; i < 10; i++) {
 //                imprenta.println("Línea " + (i + 1));
+//                imprenta.flush();
 //            }
 //            
 //        } catch(IOException e) {
@@ -286,6 +295,155 @@ public class Tema12 {
 //            
 //            if(escriba != null) {
 //                escriba.close();
+//            }
+//        }
+
+
+
+
+
+        /*
+            3.2. FICHEROS BINARIOS
+        */
+        
+        // 3.2.1. Escribir un fichero binario
+        // Declaramos las variables
+//        FileOutputStream fos = null;
+//        DataOutputStream dos = null;
+//        
+//        // Instanciamos los objetos manejando las excepciones
+//        try {
+//            fos = new FileOutputStream("ficheroBinario.bin");
+//            dos = new DataOutputStream(fos);
+//            
+//            // Escribimos los datos
+//            dos.writeBoolean(true);
+//            dos.writeByte(65);
+//            dos.writeDouble(99.8);
+//            dos.writeUTF("Hola, fichero binario.");
+//            
+//        } catch(FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        // Cerramos el flujo
+//          finally {
+//            if(dos != null) {
+//                try {
+//                    dos.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            
+//            if(fos != null) {
+//                try {
+//                    fos.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//        }
+        
+        // 3.2.2 Leer ficheros binarios
+        // Declaramos las variables
+//        FileInputStream fis = null;
+//        DataInputStream dis = null;
+//        
+//        // Instanciamos los objetos
+//        try {
+//            fis = new FileInputStream("ficheroBinario.bin");
+//            dis = new DataInputStream(fis);
+//            
+//            // Leemos por tipo de dato
+//            System.out.println(dis.readBoolean());
+//            System.out.println(dis.readByte());
+//            System.out.println(dis.readDouble());
+//            System.out.println(dis.readUTF());
+//            
+//            // Leemos los bytes
+//            int b = dis.read();
+//            while(b != -1) {
+//                System.out.println(b);
+//                b = dis.read();
+//            }            
+//            
+//        } catch(FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } 
+//        
+//        // Cerramos el flujo
+//          finally {
+//            if(dis != null) {
+//                try {
+//                    dis.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            
+//            if(fis != null) {
+//                try {
+//                    fis.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//        }
+        
+
+
+        // Copiamos una imagen:
+//        FileInputStream fis2 = null;
+//        DataInputStream dis2 = null;
+//        FileOutputStream fos2 = null;
+//        DataOutputStream dos2 = null;
+//        
+//        try {
+//            fis2 = new FileInputStream("supermario.jpeg");
+//            dis2 = new DataInputStream(fis2);
+//            fos2 = new FileOutputStream("supermario(2).jpeg");
+//            dos2 = new DataOutputStream(fos2);
+//                        
+//            int b = dis2.read();
+//            while(b != -1) {
+//                System.out.println(b);
+//                dos2.write(b);
+//                b = dis2.read();
+//            }            
+//            
+//        } catch(FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            if(dis2 != null) {
+//                try {
+//                    dis2.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            
+//            if(fis2 != null) {
+//                try {
+//                    fis2.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            
+//            if(dos2 != null) {
+//                try {
+//                    dos2.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            
+//            if(fos2 != null) {
+//                try {
+//                    fos2.close();
+//                } catch(IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
 //            }
 //        }
 
