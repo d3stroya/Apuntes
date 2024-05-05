@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -447,6 +449,106 @@ public class Tema12 {
 //            }
 //        }
 
+
+
+
+
+
+        /*
+            3.3. SERIALIZACIÓN
+        */
+        // 3.3.1. Escribir en un fichero de objetos
+        
+        // Declaramos las variables: iniciador y filtro
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        
+        try {
+            // Instanciamos los objetos
+            fos = new FileOutputStream("alumnos.obj");
+            oos = new ObjectOutputStream(fos);
+            
+            // Escribimos los datos
+            oos.writeObject(new Alumno("12345678A", 1, 8.5f));
+            oos.writeObject(new Alumno("23456789B", 2, 4.2f));
+            oos.writeObject(new Alumno("34567890C", 3, 6.23f));
+            
+            
+            // Capturamos las excepciones
+        } catch(FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        
+          // Cerramos los flujos
+        } finally {
+            try {
+                if(oos != null) {
+                    oos.close();
+                }                                
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            try {
+                if(fos != null) {
+                    fos.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+                
+        
+        // 3.3.2. Leer ficheros de objetos
+        
+        // Declaramos las variables
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        
+        try {
+            // Instanciamos los objetos
+            fis = new FileInputStream("alumnos.obj");
+            ois = new ObjectInputStream(fis);
+            
+            // Leemos los datos
+            Alumno a = (Alumno)ois.readObject();
+            while(a != null) {
+                System.out.println(a);
+                a = (Alumno)ois.readObject();
+            }
+            
+          // Capturamos las excepciones
+        } catch(FileNotFoundException e) {
+            System.out.println("Archivo no encontrado");
+            System.out.println(e.getMessage());        
+        } catch(IOException e) {
+            System.out.println("Fin de lectura");
+        } catch(ClassNotFoundException e) {
+            System.out.println("Clase no encontrada");
+            System.out.println(e.getMessage());     
+          
+          // Cerramos los flujos
+        } finally {
+            try {
+                if(ois != null) {
+                    ois.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            try {
+                if(fis != null) {
+                    fis.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }                                    
+        }
+        
+        
+        
     }
        
 }
