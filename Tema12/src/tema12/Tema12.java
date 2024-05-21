@@ -48,19 +48,19 @@ public class Tema12 {
             2) En otro método cuando llamamos al primero (throws)
     
     */
-    public static void rellenarArray(int[] numeros) throws ArrayIndexOutOfBoundsException {        
-        for(int i = 0; i < 12; i++) {
-            numeros[i] = i + 2;
-        }
-    }
-    
-    public static void dividir(int a, int b) throws ArithmeticException {
-        System.out.println(a / b);
-    }
-    
-    public static void getObjeto(Alumno[] aAlumnos) throws NullPointerException {
-        System.out.println(aAlumnos[0].getNumExpediente());
-    }
+//    public static void rellenarArray(int[] numeros) throws ArrayIndexOutOfBoundsException {        
+//        for(int i = 0; i < 12; i++) {
+//            numeros[i] = i + 2;
+//        }
+//    }
+//    
+//    public static void dividir(int a, int b) throws ArithmeticException {
+//        System.out.println(a / b);
+//    }
+//    
+//    public static void getObjeto(Alumno[] aAlumnos) throws NullPointerException {
+//        System.out.println(aAlumnos[0].getNumExpediente());
+//    }
     
     public static void main(String[] args) throws IOException {
         
@@ -350,9 +350,9 @@ public class Tema12 {
 //                }
 //            }
 //        }
-        
-        // 3.2.2 Leer ficheros binarios
-        // Declaramos las variables
+//        
+//        // 3.2.2 Leer ficheros binarios
+//        // Declaramos las variables
 //        FileInputStream fis = null;
 //        DataInputStream dis = null;
 //        
@@ -361,7 +361,7 @@ public class Tema12 {
 //            fis = new FileInputStream("ficheroBinario.bin");
 //            dis = new DataInputStream(fis);                        
 //            
-//            // Leemos los bytes por tipo de dato
+//            // Leemos los bytes por tipo de dato. Cuando termina, lanza EOFException
 //            while(true) {
 //                System.out.println(dis.readBoolean());
 //                System.out.println(dis.readByte());
@@ -401,7 +401,7 @@ public class Tema12 {
         
 
 
-        // Copiamos una imagen:
+        // Copiamos un archivo byte a byte sin conocer el tipo de dato:
 //        FileInputStream fis = null;
 //        DataInputStream dis = null;
 //        FileOutputStream fos = null;
@@ -413,11 +413,11 @@ public class Tema12 {
 //            fos = new FileOutputStream("supermario(2).jpeg");
 //            dos = new DataOutputStream(fos);
 //                        
-//            int b = dis.read();
+//            int b = fis.read();
 //            while(b != -1) {
 //                System.out.println(b);
-//                dos.write(b);
-//                b = dis.read();
+//                fos.write(b);
+//                b = fis.read();
 //            }            
 //            
 //        } catch(FileNotFoundException e) {
@@ -458,6 +458,103 @@ public class Tema12 {
 
 
 
+
+
+
+        /*
+            3.3. SERIALIZACIÓN
+        */
+        // 3.3.1. Escribir en un fichero de objetos
+        
+        // Declaramos las variables: iniciador y filtro
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        
+        try {
+            // Instanciamos los objetos
+            fos = new FileOutputStream("alumnos.obj", true);
+            oos = new ObjectOutputStream(fos);
+            
+            // Escribimos los datos
+            oos.writeObject(new Alumno("12345678A", 1, 8.5f));
+            oos.writeObject(new Alumno("23456789B", 2, 4.2f));
+            oos.writeObject(new Alumno("34567890C", 3, 6.23f));
+            
+            
+            // Capturamos las excepciones
+        } catch(FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        
+          // Cerramos los flujos
+        } finally {
+            try {
+                if(oos != null) {
+                    oos.close();
+                }                                
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            try {
+                if(fos != null) {
+                    fos.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+                
+        
+        // 3.3.2. Leer ficheros de objetos
+        
+        // Declaramos las variables
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        
+        try {
+            // Instanciamos los objetos
+            fis = new FileInputStream("alumnos.obj");
+            ois = new ObjectInputStream(fis);
+            
+            // Leemos los datos
+            Alumno a;
+            while(true) {
+                a = (Alumno)ois.readObject();
+                System.out.println(a);
+            }
+            
+          // Capturamos las excepciones
+        } catch(FileNotFoundException e) {
+            System.out.println("Archivo no encontrado");
+        } catch(ClassNotFoundException e) {
+            System.out.println("Clase no encontrada");
+        } catch(EOFException e) {
+            System.out.println("Fin de lectura");
+        } catch(IOException e) {   
+            System.out.println("Error de E/S en la lectura");
+            e.printStackTrace();
+        
+          // Cerramos los flujos
+        } finally {
+            try {
+                if(ois != null) {
+                    ois.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            try {
+                if(fis != null) {
+                    fis.close();
+                }
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }                                    
+        }
+        
         
         
     }

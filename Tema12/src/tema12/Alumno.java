@@ -1,10 +1,12 @@
 package tema12;
 
+import java.io.Serializable;
+
 /**
  *
  * @author d3stroya
  */
-public class Alumno implements Comparable<Alumno> {
+public class Alumno implements Comparable<Alumno>, Serializable {
     private String dni;
     private int numExpediente;
     private float media;
